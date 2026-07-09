@@ -50,9 +50,9 @@ GET https://api.github.com/repos/TheWiche/WajiraLand-ATM10/releases/latest
 
 > El modpack **no** vive dentro del repositorio del sitio (pesa demasiado y no tiene sentido versionarlo junto al código). Solo se distribuye vía Releases.
 
-## Conectar el estado real del servidor
+## Estado del servidor
 
-`src/lib/server-status.ts` expone `fetchServerStatus()` con datos simulados. El componente `ServerStatus.tsx` ya está listo para consumir datos reales — solo hay que reemplazar el cuerpo de esa función por una llamada a una API pública (por ejemplo [mcsrvstat.us](https://api.mcsrvstat.us/)), tal como se explica en el comentario del propio archivo. Ningún otro archivo necesita cambios.
+`src/lib/server-status.ts` consulta el estado real del servidor vía la API pública [mcsrvstat.us](https://api.mcsrvstat.us/) (online/offline, jugadores, versión) y se refresca cada 30s. No se muestran datos inventados: si la API falla, la sección lo indica como "no disponible" en vez de simular cifras. Si en algún momento quieres cambiar de proveedor de estado, solo hay que tocar esa función — `ServerStatus.tsx` no necesita cambios.
 
 ## Despliegue (GitHub Pages)
 

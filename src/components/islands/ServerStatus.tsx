@@ -17,9 +17,8 @@ function StatCard({ label, value, hint }: { label: string; value: string; hint?:
 }
 
 /**
- * Muestra el estado del servidor. Usa datos simulados vía fetchServerStatus()
- * (src/lib/server-status.ts) y se refresca sola cada 30s — al conectar una
- * API real ahí, este componente no necesita ningún cambio.
+ * Muestra el estado real del servidor (mcsrvstat.us, vía fetchServerStatus()
+ * en src/lib/server-status.ts) y se refresca sola cada 30s.
  */
 export default function ServerStatus() {
   const [state, setState] = useState<State>({ status: "loading" });
@@ -73,12 +72,11 @@ export default function ServerStatus() {
         </code>
       </div>
 
-      <dl className="mt-6 grid grid-cols-3 gap-3">
+      <dl className="mt-6 grid grid-cols-2 gap-3">
         <StatCard
           label="Jugadores"
           value={state.status === "ready" ? `${state.data.players.online}/${state.data.players.max}` : "—"}
         />
-        <StatCard label="Ping" value={state.status === "ready" && state.data.pingMs ? `${state.data.pingMs} ms` : "—"} />
         <StatCard label="Versión" value={state.status === "ready" ? state.data.version : "—"} />
       </dl>
     </div>
