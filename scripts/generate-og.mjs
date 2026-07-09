@@ -186,22 +186,28 @@ function iconHtml({ size }) {
 const browser = await chromium.launch();
 const tmpDir = mkdtempSync(path.join(tmpdir(), "wajiraland-og-"));
 
-async function shoot(html, outFile, width, height, name) {
+async function shoot(html, outFile, width, height, name, screenshotOpts = {}) {
   const htmlPath = path.join(tmpDir, `${name}.html`);
   writeFileSync(htmlPath, html);
 
-  const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 2 });
+  // deviceScaleFactor 1: social crawlers (WhatsApp, Discord, etc.) fetch this
+  // over the network and often reject slow/large images — 1200x630 at 1x is
+  // the standard OG size and keeps the file well under their size limits.
+  const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
   // Navigate via file:// (not setContent) so the document's own origin can
   // load sibling file:// resources like the logo — browsers block that from
   // an about:blank origin.
   await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: outFile });
+  await page.screenshot({ path: outFile, ...screenshotOpts });
   await page.close();
 }
 
-await shoot(ogHtml({ width: 1200, height: 630 }), path.join(root, "public/og-cover.png"), 1200, 630, "og");
+await shoot(ogHtml({ width: 1200, height: 630 }), path.join(root, "public/og-cover.jpg"), 1200, 630, "og", {
+  type: "jpeg",
+  quality: 88,
+});
 await shoot(iconHtml({ size: 180 }), path.join(root, "public/apple-touch-icon.png"), 180, 180, "icon");
 
 await browser.close();
-console.log("Generated og-cover.png and apple-touch-icon.png in /public");
+console.log("Generated og-cover.jpg and apple-touch-icon.png in /public");
