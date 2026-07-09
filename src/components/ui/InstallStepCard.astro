@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+import type { InstallStep } from "../../data/install-steps";
+
+interface Props extends InstallStep {
+  index: number;
+  isLast: boolean;
+}
+
+const { icon, title, description, index, isLast } = Astro.props;
+---
+
+<div class="reveal relative flex gap-5" data-reveal-delay={index * 100}>
+  <div class="flex flex-col items-center">
+    <div class="relative flex size-12 shrink-0 items-center justify-center rounded-full border border-emerald-glow/30 bg-ink-800 text-emerald-glow shadow-glow-sm">
+      <Icon name={icon} class="size-5" />
+      <span class="absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full bg-emerald-core text-[11px] font-bold text-ink-950">
+        {index + 1}
+      </span>
+    </div>
+    {!isLast && <div class="mt-1 w-px flex-1 bg-gradient-to-b from-emerald-glow/40 to-transparent" aria-hidden="true" />}
+  </div>
+
+  <div class="glass-panel mb-8 flex-1 rounded-2xl p-5">
+    <h3 class="font-display text-lg font-semibold text-mist-50">{title}</h3>
+    <p class="mt-1.5 text-sm leading-relaxed text-mist-200">{description}</p>
+  </div>
+</div>

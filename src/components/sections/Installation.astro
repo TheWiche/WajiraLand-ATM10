@@ -1,0 +1,39 @@
+---
+import { INSTALL_STEPS } from "../../data/install-steps";
+import { LAUNCHER } from "../../config/site";
+import InstallStepCard from "../ui/InstallStepCard.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section id="instalacion" class="relative px-4 py-24 sm:px-6 sm:py-32">
+  <div class="mx-auto max-w-3xl">
+    <SectionHeading
+      eyebrow="Primeros pasos"
+      title="Cómo empezar a jugar"
+      description="Cuatro pasos y estarás dentro de Wajira Land."
+    />
+
+    <div class="mt-14">
+      {
+        INSTALL_STEPS.map((step, index) => (
+          <InstallStepCard {...step} index={index} isLast={index === INSTALL_STEPS.length - 1} />
+        ))
+      }
+    </div>
+
+    <div class="reveal text-center">
+      <a
+        href={LAUNCHER.url}
+        target="_blank"
+        rel="noreferrer"
+        data-ripple
+        class="relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-mist-200/15 px-5 py-3 text-sm font-semibold text-mist-50 transition-all duration-200 hover:border-emerald-glow/40 hover:text-emerald-glow"
+      >
+        Descargar {LAUNCHER.name}
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14m0 0-6-6m6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

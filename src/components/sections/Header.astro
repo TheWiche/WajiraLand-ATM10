@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import logo from "../../assets/logo.png";
+import { NAV_LINKS } from "../../data/nav";
+import { SOCIAL } from "../../config/site";
+import Icon from "../ui/Icon.astro";
+---
+
+<header class="fixed inset-x-0 top-0 z-40">
+  <div class="mx-auto max-w-6xl px-4 pt-4 sm:px-6 lg:px-8">
+    <div class="glass-panel flex items-center justify-between rounded-2xl px-4 py-2.5 shadow-glow-sm">
+      <a href="#hero" class="flex items-center gap-2.5">
+        <Image src={logo} alt="Wajira Land" width={40} height={37} class="h-9 w-auto drop-shadow-[0_0_18px_rgba(52,232,158,0.35)]" />
+        <span class="font-display text-lg font-semibold tracking-tight text-mist-50">
+          Wajira<span class="text-emerald-glow">Land</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
+        {
+          NAV_LINKS.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-mist-200 transition-colors duration-200 hover:text-emerald-glow"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href={SOCIAL.discord}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Discord de Wajira Land"
+          class="hidden items-center justify-center rounded-xl border border-mist-200/15 p-2 text-mist-200 transition-all duration-200 hover:border-emerald-glow/40 hover:text-emerald-glow sm:flex"
+        >
+          <Icon name="discord" class="size-5" />
+        </a>
+        <a
+          href="#hero"
+          class="rounded-xl bg-emerald-core px-4 py-2 text-sm font-semibold text-ink-950 transition-all duration-200 hover:bg-emerald-glow hover:shadow-glow-sm"
+        >
+          Jugar ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import logo from "../../assets/logo.png";
+import { SITE } from "../../config/site";
+import DownloadButton from "../islands/DownloadButton";
+import CopyIpButton from "../islands/CopyIpButton";
+import AmbientBackground from "../ui/AmbientBackground.astro";
+---
+
+<section id="hero" class="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-4 pt-28 pb-16 sm:px-6">
+  <AmbientBackground />
+
+  <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+    <div class="reveal">
+      <Image
+        src={logo}
+        alt="Wajira Land"
+        width={280}
+        height={259}
+        priority
+        class="mx-auto w-48 animate-float drop-shadow-[0_0_60px_rgba(52,232,158,0.45)] sm:w-60"
+      />
+    </div>
+
+    <h1 class="reveal mt-6 text-balance font-display text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl" data-reveal-delay="80">
+      Bienvenido a <span class="text-gradient-emerald animate-gradient-shift">Wajira Land</span>
+    </h1>
+
+    <p class="reveal mt-6 max-w-2xl text-balance text-base text-mist-200 sm:text-lg" data-reveal-delay="160">
+      {SITE.tagline} Un servidor de <strong class="font-semibold text-mist-50">All The Mods 10</strong> optimizado
+      para exploración, tecnología, magia y una comunidad activa.
+    </p>
+
+    <div class="reveal mt-10 flex flex-col items-center gap-5" data-reveal-delay="240">
+      <DownloadButton client:load />
+      <div class="flex flex-col items-center gap-3 sm:flex-row">
+        <CopyIpButton client:load />
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="#caracteristicas"
+    aria-label="Desplázate para ver más"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float text-mist-400 transition-colors hover:text-emerald-glow"
+  >
+    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </a>
+</section>

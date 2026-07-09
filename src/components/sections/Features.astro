@@ -1,0 +1,19 @@
+---
+import { FEATURES } from "../../data/features";
+import FeatureCard from "../ui/FeatureCard.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+---
+
+<section id="caracteristicas" class="relative px-4 py-24 sm:px-6 sm:py-32">
+  <div class="mx-auto max-w-6xl">
+    <SectionHeading
+      eyebrow="Qué te espera"
+      title="Un modpack, cinco pilares"
+      description="All The Mods 10 reúne exploración, tecnología y magia en un solo mundo. Esto es lo que encontrarás en Wajira Land."
+    />
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {FEATURES.map((feature, index) => <FeatureCard {...feature} index={index} />)}
+    </div>
+  </div>
+</section>

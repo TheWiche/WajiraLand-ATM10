@@ -1,0 +1,163 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-display: "Space Grotesk Variable", "Space Grotesk", sans-serif;
+  --font-body: "Inter Variable", "Inter", sans-serif;
+
+  /* Núcleo de marca: negro, gris oscuro, esmeralda, verde brillante, blanco */
+  --color-ink-950: #05070a;
+  --color-ink-900: #0a0e13;
+  --color-ink-800: #10161d;
+  --color-ink-700: #1a222b;
+  --color-ink-600: #262f3a;
+  --color-ink-500: #3a4551;
+
+  --color-emerald-glow: #34e89e;
+  --color-emerald-core: #10b981;
+  --color-emerald-deep: #065f46;
+  --color-emerald-950: #032b21;
+
+  --color-mist-50: #f5f8f7;
+  --color-mist-200: #cfd8d5;
+  --color-mist-400: #8fa19b;
+
+  --shadow-glow-sm: 0 0 24px -6px color-mix(in oklab, var(--color-emerald-glow) 55%, transparent);
+  --shadow-glow-md: 0 0 48px -8px color-mix(in oklab, var(--color-emerald-glow) 65%, transparent);
+  --shadow-glow-lg: 0 0 96px -12px color-mix(in oklab, var(--color-emerald-core) 70%, transparent);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3.5s ease-in-out infinite;
+  --animate-gradient-shift: gradient-shift 12s ease infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-ink-950);
+    color: var(--color-mist-50);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: color-mix(in oklab, var(--color-ink-800) 65%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-mist-200) 12%, transparent);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+
+  .text-gradient-emerald {
+    background-image: linear-gradient(
+      110deg,
+      var(--color-emerald-glow),
+      var(--color-mist-50) 45%,
+      var(--color-emerald-core)
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Elemento observado por scroll-reveal.ts: oculto hasta entrar en viewport */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

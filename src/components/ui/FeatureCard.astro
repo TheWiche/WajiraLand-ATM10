@@ -1,0 +1,28 @@
+---
+import Icon from "./Icon.astro";
+import type { Feature } from "../../data/features";
+
+interface Props extends Feature {
+  index: number;
+}
+
+const { icon, title, description, index } = Astro.props;
+---
+
+<div
+  class="reveal group relative overflow-hidden rounded-2xl border border-mist-200/10 bg-ink-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-glow/30 hover:shadow-glow-sm"
+  data-reveal-delay={index * 90}
+>
+  <div
+    class="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-core/0 blur-2xl transition-colors duration-500 group-hover:bg-emerald-core/20"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative flex size-12 items-center justify-center rounded-xl bg-emerald-core/10 text-emerald-glow transition-transform duration-300 group-hover:scale-110">
+    <Icon name={icon} class="size-6" />
+  </div>
+
+  <h3 class="relative mt-5 font-display text-xl font-semibold text-mist-50">{title}</h3>
+  <p class="relative mt-2 text-sm leading-relaxed text-mist-200">{description}</p>
+</div>
