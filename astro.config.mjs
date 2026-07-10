@@ -4,10 +4,10 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
-// Sitio de proyecto en GitHub Pages: https://thewiche.github.io/WajiraLand-ATM10/
+// Sitio de proyecto en GitHub Pages: https://thewiche.github.io/WajiraLand-Otherworld/
 export default defineConfig({
   site: "https://thewiche.github.io",
-  base: "/WajiraLand-ATM10",
+  base: "/WajiraLand-Otherworld",
   trailingSlash: "ignore",
 
   integrations: [react()],

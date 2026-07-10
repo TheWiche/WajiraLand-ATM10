@@ -3,16 +3,16 @@
 
 export const SITE = {
   name: "Wajira Land",
-  tagline: "Un mundo modded, sin límites.",
+  tagline: "Una aventura de fantasía sin límites.",
   description:
-    "Servidor de Minecraft con el modpack All The Mods 10. Explora, construye y sobrevive en Wajira Land: tecnología, magia y multijugador en un mundo sin fronteras.",
-  url: "https://thewiche.github.io/WajiraLand-ATM10/",
+    "Servidor de Minecraft con el modpack Otherworld [Dungeons & Dragons]. Explora, forja tu leyenda y sobrevive en Wajira Land: magia, combate y una comunidad activa en un mundo de fantasía.",
+  url: "https://thewiche.github.io/WajiraLand-Otherworld/",
   locale: "es",
 } as const;
 
 export const GITHUB = {
   owner: "TheWiche",
-  repo: "WajiraLand-ATM10",
+  repo: "WajiraLand-Otherworld",
   get repoUrl() {
     return `https://github.com/${this.owner}/${this.repo}`;
   },
@@ -27,7 +27,7 @@ export const SERVER = {
   get address() {
     return `${this.ip}:${this.port}`;
   },
-  modpack: "All The Mods 10",
+  modpack: "Otherworld [Dungeons & Dragons]",
   minecraftVersion: "1.20.1",
 } as const;
 

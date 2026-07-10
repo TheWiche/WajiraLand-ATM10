@@ -10,7 +10,7 @@ export const INSTALL_STEPS: InstallStep[] = [
   {
     icon: "download",
     title: "Instala Prism Launcher",
-    description: "Descarga e instala el launcher gratuito y de código abierto compatible con modpacks .mrpack.",
+    description: "Descarga e instala el launcher gratuito y de código abierto, compatible con modpacks .zip y .mrpack.",
   },
   {
     icon: "server",
@@ -18,9 +18,9 @@ export const INSTALL_STEPS: InstallStep[] = [
     description: "Pulsa \"Descargar Modpack\" en esta página para obtener siempre la última versión publicada.",
   },
   {
-    icon: "cpu",
-    title: "Abre el archivo .mrpack",
-    description: "Arrastra el archivo descargado a Prism Launcher o impórtalo desde \"Añadir instancia\".",
+    icon: "package",
+    title: "Importa el archivo",
+    description: "En Prism Launcher, ve a \"Añadir instancia > Importar\" y selecciona el archivo descargado.",
   },
   {
     icon: "wifi",

@@ -1,6 +1,6 @@
 # Wajira Land
 
-Sitio oficial del servidor de Minecraft **Wajira Land** (modpack All The Mods 10).
+Sitio oficial del servidor de Minecraft **Wajira Land** (modpack Otherworld [Dungeons & Dragons]).
 Construido con [Astro](https://astro.build) + islas de [React](https://react.dev) + [Tailwind CSS v4](https://tailwindcss.com), pensado para desplegarse como sitio 100% estático en GitHub Pages.
 
 ## Stack y arquitectura
@@ -39,12 +39,12 @@ src/
 El botón **"Descargar Modpack"**, el badge de versión del footer y el estado de la descarga **nunca** apuntan a un archivo fijo: en tiempo de ejecución consultan la API pública de GitHub
 
 ```
-GET https://api.github.com/repos/TheWiche/WajiraLand-ATM10/releases/latest
+GET https://api.github.com/repos/TheWiche/WajiraLand-Otherworld/releases/latest
 ```
 
 (ver `src/lib/github-release.ts`) y usan el asset (`.mrpack`/`.zip`) del último release publicado. Esto significa que **para actualizar el modpack no hay que tocar ni una línea de código ni redesplegar el sitio**:
 
-1. Sube el nuevo `.mrpack` (o `.zip`) como asset de un nuevo [GitHub Release](https://github.com/TheWiche/WajiraLand-ATM10/releases/new) del repo.
+1. Sube el nuevo `.mrpack` (o `.zip`) como asset de un nuevo [GitHub Release](https://github.com/TheWiche/WajiraLand-Otherworld/releases/new) del repo.
 2. Usa una etiqueta de versión clara (por ejemplo `v1.1.0`) y, si quieres, un changelog en la descripción.
 3. Listo. La próxima vez que alguien visite la web, el botón de descarga, la versión mostrada y el changelog se actualizan solos.
 
@@ -61,7 +61,7 @@ El workflow `.github/workflows/deploy.yml` construye el sitio y lo publica en Gi
 Configuración única en el repositorio (una sola vez):
 
 1. **Settings → Pages → Source** → selecciona **GitHub Actions**.
-2. Confirma que `astro.config.mjs` tiene `site` y `base` apuntando al usuario/repo correctos (ya configurado para `TheWiche/WajiraLand-ATM10`).
+2. Confirma que `astro.config.mjs` tiene `site` y `base` apuntando al usuario/repo correctos (ya configurado para `TheWiche/WajiraLand-Otherworld`).
 
 A partir de ahí, cada `git push` a `main` despliega automáticamente.
 

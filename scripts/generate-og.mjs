@@ -137,7 +137,7 @@ function ogHtml({ width, height }) {
     <div class="content">
       <img class="logo" src="${logoUrl}" />
       <div class="title">Bienvenido a <span class="accent">Wajira Land</span></div>
-      <div class="tagline">Servidor de Minecraft · All The Mods 10 &mdash; exploración, tecnología y magia en un mundo sin límites.</div>
+      <div class="tagline">Servidor de Minecraft · Otherworld [Dungeons &amp; Dragons] &mdash; exploración, magia y combate de fantasía.</div>
       <div class="pill"><span class="dot"></span>15.204.68.134:20280</div>
     </div>
   </div>
